@@ -13,7 +13,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   
   const gamesOptions = [
     { name: 'League of Legends', hasSubmenu: true },
-    { name: 'Valorant', hasSubmenu: false },
     { name: 'Mais jogos em breve', hasSubmenu: false }
   ];
 

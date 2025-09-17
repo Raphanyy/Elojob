@@ -8,6 +8,7 @@ import Features from './components/Features';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import EloBoostPage from './components/EloBoostPage';
+import CoachServicePage from './components/CoachServicePage';
 import { ChatBubbleIcon } from './components/Icons';
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -16,6 +17,8 @@ const App: React.FC = () => {
     switch (currentPage) {
       case 'elo-boost':
         return <EloBoostPage />;
+      case 'coach-service':
+        return <CoachServicePage />;
       default:
         return (
           <>
