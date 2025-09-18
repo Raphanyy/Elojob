@@ -63,9 +63,10 @@ const CoachServicePage: React.FC = () => {
       bgColor: 'bg-slate-700',
       icon: (
         <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center">
-          <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-            <div className="w-3 h-3 bg-gray-800 rounded-sm"></div>
-          </div>
+          {/* Sparkle pontiaguda para plano básico */}
+          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2L12 8L18 8L13 12L15 18L10 14L5 18L7 12L2 8L8 8L10 2Z"/>
+          </svg>
         </div>
       ),
       features: ['Análise de gameplay', 'Dicas básicas', 'Revisão de partidas']
@@ -79,9 +80,10 @@ const CoachServicePage: React.FC = () => {
       bgColor: 'bg-gradient-to-b from-teal-700 to-teal-900',
       icon: (
         <div className="w-12 h-12 bg-teal-800 rounded-full flex items-center justify-center">
-          <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-            <div className="w-3 h-3 bg-teal-800 rounded-sm"></div>
-          </div>
+          {/* Sparkle pontiaguda para plano experiente */}
+          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2L12 8L18 8L13 12L15 18L10 14L5 18L7 12L2 8L8 8L10 2Z"/>
+          </svg>
         </div>
       ),
       features: ['Análise avançada', 'Estratégias específicas', 'Coaching em tempo real']
@@ -95,9 +97,10 @@ const CoachServicePage: React.FC = () => {
       bgColor: 'bg-gradient-to-b from-blue-700 to-blue-900',
       icon: (
         <div className="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center">
-          <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-            <div className="w-3 h-3 bg-blue-800 rounded-sm"></div>
-          </div>
+          {/* Sparkle pontiaguda para plano avançado */}
+          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2L12 8L18 8L13 12L15 18L10 14L5 18L7 12L2 8L8 8L10 2Z"/>
+          </svg>
         </div>
       ),
       features: ['Análise profissional', 'Estratégias de alto nível', 'Coaching personalizado']
@@ -107,23 +110,35 @@ const CoachServicePage: React.FC = () => {
   const selectedPlanData = coachPlans.find(plan => plan.id === selectedPlan) || coachPlans[0];
 
   const calculatePrice = () => {
-    let basePrice = selectedPlanData.price * quantity;
+    let basePrice = selectedPlanData.price;
     
+    // Aplicar porcentagem do modelo primeiro
     if (modelType === 'dupla') {
-      basePrice *= 1.25;
+      basePrice *= 1.25; // +25%
     } else if (modelType === 'equipe') {
-      basePrice *= 1.5;
+      basePrice *= 1.5; // +50%
     }
+    // Individual mantém o preço base (sem acréscimo)
     
-    return basePrice;
+    // Depois multiplicar pela quantidade de aulas
+    return basePrice * quantity;
   };
 
   const getModelPriceText = (type: string) => {
+    const basePrice = selectedPlanData.price;
+    let adjustedPrice = basePrice;
+    
     switch (type) {
-      case 'individual': return 'FREE';
-      case 'dupla': return '+25%';
-      case 'equipe': return '+50%';
-      default: return 'FREE';
+      case 'individual': 
+        return 'FREE';
+      case 'dupla': 
+        adjustedPrice = basePrice * 1.25;
+        return `+25% (R$ ${adjustedPrice.toFixed(2).replace('.', ',')})`;
+      case 'equipe': 
+        adjustedPrice = basePrice * 1.5;
+        return `+50% (R$ ${adjustedPrice.toFixed(2).replace('.', ',')})`;
+      default: 
+        return 'FREE';
     }
   };
 
@@ -166,11 +181,9 @@ const CoachServicePage: React.FC = () => {
                 )}
                 
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                      <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center">
-                        <div className="w-2 h-2 bg-gray-700 rounded-sm"></div>
-                      </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-10 h-10">
+                      {plan.icon}
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
@@ -229,8 +242,8 @@ const CoachServicePage: React.FC = () => {
           <div className="lg:col-span-1 pt-12">
             <div className="bg-gray-900 border border-gray-700 rounded-xl p-3 h-[calc(100vh-16rem)] max-h-[500px] flex flex-col shadow-lg">
               <h3 className="text-lg font-bold text-white mb-1">PLANO {selectedPlanData.name}</h3>
-              <div className="text-gray-400 text-xs mb-1">01 AULA</div>
-              <div className="text-xl font-bold text-white mb-2">R$ {selectedPlanData.price.toFixed(2).replace('.', ',')}</div>
+              <div className="text-gray-400 text-xs mb-1">{quantity} AULA{quantity > 1 ? 'S' : ''}</div>
+              <div className="text-xl font-bold text-white mb-2">R$ {calculatePrice().toFixed(2).replace('.', ',')}</div>
 
               <div className="space-y-2 mb-4">
                 <div className="text-white text-sm font-medium">Você agenda o horário</div>
@@ -243,16 +256,30 @@ const CoachServicePage: React.FC = () => {
                 <div className="space-y-4">
                   {/* Quantity Selection */}
                   <div>
-                    <label className="block text-white text-sm font-medium mb-2">Quantidade</label>
-                    <select 
-                      value={quantity} 
-                      onChange={(e) => setQuantity(Number(e.target.value))}
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      {[1, 2, 3, 4, 5].map(num => (
-                        <option key={num} value={num}>{num} aula{num > 1 ? 's' : ''}</option>
-                      ))}
-                    </select>
+                    <label className="block text-white text-sm font-medium mb-2">Quantidade de Aulas</label>
+                    <div className="flex items-center">
+                      <div className="flex items-center bg-gray-800 border border-gray-600 rounded-lg px-3 py-2">
+                        <button 
+                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                          className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                          </svg>
+                        </button>
+                        <span className="mx-3 text-white text-sm font-medium min-w-[20px] text-center">
+                          {quantity}
+                        </span>
+                        <button 
+                          onClick={() => setQuantity(Math.min(10, quantity + 1))}
+                          className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Model Selection */}
@@ -264,22 +291,27 @@ const CoachServicePage: React.FC = () => {
                         { value: 'dupla', label: 'Dupla' },
                         { value: 'equipe', label: 'Equipe' }
                       ].map((option) => (
-                        <label key={option.value} className="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-gray-800/30 transition-colors">
+                        <label key={option.value} className={`flex items-center justify-between cursor-pointer p-2 rounded-lg border transition-all duration-200 ${
+                          modelType === option.value 
+                            ? 'border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20' 
+                            : 'border-gray-600 bg-gray-800/30 hover:border-gray-500 hover:bg-gray-800/50'
+                        }`}>
                           <div className="flex items-center">
-                            <input
-                              type="radio"
-                              name="modelType"
-                              value={option.value}
-                              checked={modelType === option.value}
-                              onChange={(e) => setModelType(e.target.value as any)}
-                              className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-700 focus:ring-blue-500"
-                            />
-                            <span className="ml-3 text-white text-sm">{option.label}</span>
+                            <div className={`w-2.5 h-2.5 rounded-full border-2 mr-2 transition-all duration-200 ${
+                              modelType === option.value 
+                                ? 'border-orange-500 bg-orange-500' 
+                                : 'border-gray-500'
+                            }`}>
+                              {modelType === option.value && (
+                                <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                              )}
+                            </div>
+                            <span className="text-white text-xs font-medium">{option.label}</span>
                           </div>
-                          <span className={`text-xs px-2 py-1 rounded ${
+                          <span className={`text-xs px-1.5 py-0.5 rounded-full font-medium ${
                             option.value === 'individual' 
-                              ? 'text-green-400 bg-green-500/10 border border-green-500' 
-                              : 'text-blue-400 bg-blue-500/10 border border-blue-500'
+                              ? 'text-green-400 bg-green-500/20 border border-green-500/50' 
+                              : 'text-blue-400 bg-blue-500/20 border border-blue-500/50'
                           }`}>
                             {getModelPriceText(option.value)}
                           </span>
@@ -296,6 +328,38 @@ const CoachServicePage: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Vantagens Grátis Section */}
+      <div className="mt-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <h3 className="text-2xl font-bold text-white">Vantagens</h3>
+            <span className="text-xs font-bold text-orange-400 border border-orange-500/40 bg-orange-500/10 px-2 py-0.5 rounded">Grátis</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            {[
+              'Boosters Didáticos e Amigáveis',
+              'Entrega Rápida e Garantida',
+              'Conteúdo Personalizado',
+              'Você Define os Horários',
+              'Feedback e Dicas in-game',
+              'Disponibilidade 24/7',
+              'Professores Desafiantes',
+              'Política de Reembolso'
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-cyan-500/40 bg-cyan-500/10">
+                  <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <span className="text-gray-200 text-sm">{item}</span>
+              </div>
+            ))}
+          </div>
+          <div className="border-t border-gray-800 mt-8" />
         </div>
       </div>
     </div>

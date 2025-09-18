@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDownIcon, ChevronRightIcon } from './Icons';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -8,6 +10,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const [isGamesDropdownOpen, setIsGamesDropdownOpen] = useState(false);
   const [isLolSubmenuOpen, setIsLolSubmenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navItems = ['Jogos Disponíveis', 'Avaliações', 'Fale Conosco', 'Carreiras'];
   
@@ -139,12 +143,34 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             </nav>
           </div>
           <div className="flex items-center">
-             <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-orange-500/25">
+             <button 
+               onClick={() => setIsLoginModalOpen(true)}
+               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-orange-500/25"
+             >
                 Iniciar Sessão
             </button>
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToSignup={() => {
+          setIsLoginModalOpen(false);
+          setIsSignupModalOpen(true);
+        }}
+      />
+      
+      <SignupModal
+        isOpen={isSignupModalOpen}
+        onClose={() => setIsSignupModalOpen(false)}
+        onSwitchToLogin={() => {
+          setIsSignupModalOpen(false);
+          setIsLoginModalOpen(true);
+        }}
+      />
     </header>
   );
 };
