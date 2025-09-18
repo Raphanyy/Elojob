@@ -295,7 +295,7 @@ const CoachServicePage: React.FC = () => {
                           modelType === option.value 
                             ? 'border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20' 
                             : 'border-gray-600 bg-gray-800/30 hover:border-gray-500 hover:bg-gray-800/50'
-                        }`}>
+                        }`} onClick={() => setModelType(option.value as 'individual' | 'dupla' | 'equipe')}>
                           <div className="flex items-center">
                             <div className={`w-2.5 h-2.5 rounded-full border-2 mr-2 transition-all duration-200 ${
                               modelType === option.value 

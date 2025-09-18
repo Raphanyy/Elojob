@@ -68,13 +68,13 @@ const Boosters: React.FC = () => {
                       </span>
                       <p className="text-cyan-400 font-semibold text-sm">83 BOOSTERS DISPONÍVEIS</p>
                   </div>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tighter leading-tight">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-normal leading-tight">
                     NÓS ESTAMOS<br/>PRONTOS PARA<br/>TE AJUDAR
                   </h2>
               </div>
               <div className="text-left lg:text-left lg:pl-8">
                   <p className="text-gray-400 text-base lg:text-lg leading-relaxed max-w-lg">
-                    Recrutados do Mestre ao Desafiante e treinados em GRAVIDADE ZERO nossos astronautas têm win rates incríveis em qualquer ELO que você precisar.
+                    Selecionados entre os melhores jogadores do Mestre ao Desafiante, nossos boosters profissionais garantem resultados excepcionais em qualquer ELO que você precisar.
                   </p>
               </div>
           </div>

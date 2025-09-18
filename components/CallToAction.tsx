@@ -9,7 +9,7 @@ const CallToAction: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div>
               <p className="text-orange-500 font-semibold">Pronto para evoluir no League?</p>
-              <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter mt-2 transition-colors duration-300 group-hover:text-orange-500">
+              <h2 className="text-5xl md:text-7xl font-extrabold tracking-normal mt-2 transition-colors duration-300 group-hover:text-orange-500">
                 DESTRUA O NEXUS
               </h2>
             </div>

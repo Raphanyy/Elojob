@@ -54,6 +54,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         <div className="flex items-center justify-between h-20 border-b border-gray-800">
           <div className="flex items-center space-x-8">
             <div className="flex items-center cursor-pointer" onClick={() => onNavigate('home')}>
+              <img 
+                src="https://i.imgur.com/3h7w6wi.png" 
+                alt="KATTER Logo" 
+                className="w-10 h-10 mr-2"
+              />
               <span className="text-xl font-bold text-white tracking-wider">KATTER</span>
             </div>
             <nav className="hidden md:flex space-x-6">

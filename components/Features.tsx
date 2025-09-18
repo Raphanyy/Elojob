@@ -36,7 +36,7 @@ const Features: React.FC = () => {
         <section className="py-20 bg-black">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <p className="text-orange-500 font-semibold">RÁPIDO, FÁCIL E SEGURO</p>
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter mt-2">
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-normal mt-2">
                     DECOLE COM AS VANTAGENS QUE PREPARAMOS PARA VOCÊ
                 </h2>
 
@@ -65,12 +65,12 @@ const Features: React.FC = () => {
                 </div>
 
                 <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-12 text-left">
-                    <IconFeature icon={<VpnIcon className="w-7 h-7"/>} title="UTILIZAMOS VPN" description="Utilizamos uma rede privada e segura." />
-                    <IconFeature icon={<ClockIcon className="w-7 h-7"/>} title="PRAZO GARANTIDO" description="Seu pedido é sempre entregue no prazo." />
-                    <IconFeature icon={<CustomerSupportIcon className="w-7 h-7"/>} title="DISPONÍVEL 24/7" description="Nosso serviço está disponível 24/7." />
-                    <IconFeature icon={<BanIcon className="w-7 h-7"/>} title="0% CHANCE DE SUSPENSÃO" description="Você não corre o risco de ser suspenso com Elo Job (elojob)." />
-                    <IconFeature icon={<RefundIcon className="w-7 h-7"/>} title="POLÍTICA DE REEMBOLSO" description="Se você mudar de ideia nós devolvemos seu dinheiro." />
-                    <IconFeature icon={<TrophyIcon className="w-7 h-7"/>} title="TAXA DE VITÓRIA SUPERIOR A 90%" description="Trabalhamos apenas com os melhores no Elo Job (elojob)." />
+                    <IconFeature icon={<VpnIcon className="w-7 h-7"/>} title="UTILIZAMOS VPN" description="Protegemos sua conta com VPN avançada para evitar detecção" />
+                    <IconFeature icon={<ClockIcon className="w-7 h-7"/>} title="PRAZO GARANTIDO" description="Entregamos seu boost no prazo prometido ou reembolsamos" />
+                    <IconFeature icon={<CustomerSupportIcon className="w-7 h-7"/>} title="DISPONÍVEL 24/7" description="Nossos boosters estão sempre online para atender você" />
+                    <IconFeature icon={<BanIcon className="w-7 h-7"/>} title="0% CHANCE DE SUSPENSÃO" description="Métodos seguros garantem que sua conta não será banida" />
+                    <IconFeature icon={<RefundIcon className="w-7 h-7"/>} title="POLÍTICA DE REEMBOLSO" description="Se não ficar satisfeito, devolvemos 100% do seu dinheiro" />
+                    <IconFeature icon={<TrophyIcon className="w-7 h-7"/>} title="VITÓRIA GARANTIDA" description="Taxa de vitória acima de 80% em todas as partidas" />
                 </div>
             </div>
         </section>

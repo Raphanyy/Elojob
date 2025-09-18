@@ -14,6 +14,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center">
+                <img 
+                  src="https://i.imgur.com/3h7w6wi.png" 
+                  alt="KATTER Logo" 
+                  className="w-12 h-12 mr-2"
+                />
                 <span className="text-2xl font-bold text-white tracking-wider">KATTER</span>
             </div>
             <p className="mt-4 text-sm max-w-sm">

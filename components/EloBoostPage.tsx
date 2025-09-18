@@ -562,7 +562,7 @@ const EloBoostPage: React.FC = () => {
                     className="text-base font-medium mb-2"
                     style={{ color: currentElo ? `${currentElo.color}DD` : '#fbbf24DD' }}
                   >Selecione seu Elo Atual</p>
-                  <h2 className="text-3xl font-extrabold text-white tracking-wider">
+                  <h2 className="text-3xl font-extrabold text-white tracking-normal">
                     {currentElo?.name || 'OURO I'}
                   </h2>
                 </div>
@@ -622,7 +622,7 @@ const EloBoostPage: React.FC = () => {
                     className="text-base font-medium mb-2"
                     style={{ color: desiredElo ? `${desiredElo.color}DD` : '#5eead4DD' }}
                   >Selecione o Elo Desejado</p>
-                  <h2 className="text-3xl font-extrabold text-white tracking-wider">
+                  <h2 className="text-3xl font-extrabold text-white tracking-normal">
                     {desiredElo?.name || 'PLATINA IV'}
                 </h2>
               </div>

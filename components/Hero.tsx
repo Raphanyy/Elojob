@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
         </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter leading-tight mb-8">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-normal leading-tight mb-8">
             <span className="block text-white">SOMOS A MAIOR PLATAFORMA</span>
             <span className="block text-orange-500">DE BOOSTING DO MUNDO</span>
           </h1>
